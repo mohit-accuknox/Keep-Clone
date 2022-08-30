@@ -1,0 +1,9 @@
+.containerNoteKeep{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    height: 100%;
+    padding: 2rem;
+    gap: 2rem;
+}

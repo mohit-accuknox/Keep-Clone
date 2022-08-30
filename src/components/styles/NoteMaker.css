@@ -1,0 +1,97 @@
+.noteContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+    width: 35%;
+    margin: 3rem auto;
+    gap: 0.7rem;
+    overflow: hidden;
+    padding: 0.8rem;
+    /* height: 4vh; */
+    transition: all 0.5s ease-in
+}
+
+.top{
+    
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.top input{
+    width: 100%;
+    height: 2.5vh;
+    /* padding: 0.8rem; */
+    font-size: 1.5rem;
+    color: black;
+    font-weight: 600;
+    border: none;
+    outline: none;
+}
+
+
+.top img{
+    width: 30px;
+    cursor: pointer;
+}
+
+textarea{
+    width: 100%;
+    font-size: 1rem;
+    border: none;
+    outline: none;
+}
+
+.addNote{
+    width: 100%;
+    text-align: right;
+}
+
+.addBtn{
+    width: 100px;
+    padding: 0.5rem;
+    border: 1px solid gray;
+    background: transparent;
+    cursor: pointer;
+    font-size: 0.8rem;
+    border-radius: 50px;
+}
+
+.addBtn:hover{
+    background-color: rgb(229, 229, 229);
+}
+
+/* .titleInput, .pinIcon, .addNote{
+    display: none;
+}
+
+.titleInput, .pinIcon, .addNote, .noteContainer:focus {
+    height: 100%;
+    display: block;
+} */
+
+@media screen and (max-width: 1000px) {
+    .noteContainer{
+        height: 30vh;
+        width: 60%;
+    }
+}
+
+@media screen and (max-width: 500px){
+    .noteContainer{
+        width: 80%;
+        height: 20vh;
+    }
+
+    .top input{
+        font-size: 1.2rem;
+    }
+
+    textarea{
+        font-size: 0.8rem;
+    }
+}
