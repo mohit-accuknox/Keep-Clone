@@ -1,24 +1,41 @@
 import React from "react";
 import Notes from "./Notes";
 import '../styles/NoteContainer.css'
+import PinnedFile from "./PinnedFile";
 
-const NoteContainer = ({ noteData, handleDeleteNote }) => {
+const NoteContainer = ({ noteData, handleDeleteNote, pinStatus }) => {
   console.log(noteData);
-
+  
+  const pinnedData = noteData.filter((val) => val.isPinned === true);
+  const unPinnedData = noteData.filter((val) => val.isPinned === false);
   return (
     <div>
       <section className="containerNoteKeep">
-        {noteData.map((item, index) => {
+        
+        {pinnedData.map((item, index) => {
           return (
             <Notes
               key={index}
-              id={index}
-              title={item.title}
-              note={item.note}
+              item={item}
               handleDeleteNote={handleDeleteNote}
+              pinStatus={pinStatus}
             />
           );
         })}
+        
+        {
+        
+        unPinnedData.map((item, index) => {
+          return (
+            <Notes
+              key={index}
+              item={item}
+              handleDeleteNote={handleDeleteNote}
+              pinStatus={pinStatus}
+            />
+          );
+        })
+        }
       </section>
     </div>
   );

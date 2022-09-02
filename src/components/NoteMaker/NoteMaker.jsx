@@ -2,16 +2,19 @@ import React, { useState } from "react";
 import "../styles/NoteMaker.css";
 
 const NoteMaker = (prop) => {
-  const [input, setInput] = useState({
+
+  const emptyNote = {
+    id: Date.now(),
     title: "",
     note: "",
-  });
+    isPinned: false,
+  };
 
+  const [input, setInput] = useState(emptyNote);
   // console.log(input);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
-
     setInput((oldData) => {
       return {
         ...oldData,
@@ -24,10 +27,7 @@ const NoteMaker = (prop) => {
   const addNoteButton = () => {
     if (input.title !== "" && input.note !== "") {
       prop.addNoteValue(input);
-      setInput({
-        title: "",
-        note: "",
-      });
+      setInput(emptyNote);
     }
   };
 
@@ -43,7 +43,7 @@ const NoteMaker = (prop) => {
             onChange={handleInput}
             className="titleInput"
           />
-          <img src="/images/pin.png" alt="" className="pinIcon"/>
+          <img src="/images/pin.png" alt="" className="pinIcon" />
         </div>
         <textarea
           name="note"

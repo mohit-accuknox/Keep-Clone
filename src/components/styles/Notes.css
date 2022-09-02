@@ -12,26 +12,32 @@
 }
 
 .cardContent{
-
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
 }
 
 .card{
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: flex-start;
     flex-direction: column;
     padding: 0.8rem;
     width: 25vw;
-    height:20vh;
+    height:30vh;
     border-radius: 10px;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
     overflow: hidden;
-    gap: 4rem; 
+    /* gap: 1rem;  */
 }
 
 .deleteBtn{
     width: 100%;
     text-align: right;
+    display: flex;
+    justify-content: flex-end;
+    gap: 1rem;
 }
 
 .deleteBtn button{
@@ -52,11 +58,23 @@
     font-size: 1.2;
 }
 
+.date{
+    width: 100%;
+    text-align: right;
+    font-weight: 500;
+}
+
+@media screen and (max-width: 1000px) {
+    .card{
+        /* height: 25vh; */
+    }
+}
+
 @media screen and (max-width: 500px) {
     .card{
         width: 80vw;
         margin: 0 auto;
-        height: 29vh;
+        /* height: 29vh; */
     }
 }
 
