@@ -40,6 +40,14 @@
     gap: 1rem;
 }
 
+.inputEdit{
+    width: 100%;
+    height: 2vh;
+    border: none;
+    outline: none;
+    background-color: transparent;
+}
+
 .deleteBtn button{
     width: 100px;
     padding: 0.5rem;

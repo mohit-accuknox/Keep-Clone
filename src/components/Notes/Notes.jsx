@@ -80,6 +80,7 @@ const Notes = ({ key, id, item, handleDeleteNote }) => {
         <div className="cardContent">
           {isEditing ? (
             <input
+              className="inputEdit"
               type="text"
               value={titleText}
               placeholde="title"
