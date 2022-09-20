@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../styles/NoteMaker.css";
+import {motion} from 'framer-motion'
 
 const NoteMaker = (prop) => {
 
@@ -33,7 +34,7 @@ const NoteMaker = (prop) => {
 
   return (
     <div>
-      <section className="noteContainer">
+      <motion.section initial={{opacity:0}} animate={{opacity:1}} transition={{duration:0.7}} className="noteContainer">
         <div className="top">
           <input
             type="text"
@@ -55,11 +56,11 @@ const NoteMaker = (prop) => {
           onChange={handleInput}
         ></textarea>
         <span className="addNote">
-          <button className="addBtn" onClick={addNoteButton}>
+          <motion.button whileTap={{scale:0.9, x:10}} className="addBtn" onClick={addNoteButton}>
             Add Note
-          </button>
+          </motion.button>
         </span>
-      </section>
+      </motion.section>
     </div>
   );
 };

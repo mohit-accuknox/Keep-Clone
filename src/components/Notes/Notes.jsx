@@ -2,8 +2,11 @@ import React, { useContext } from "react";
 import { useState } from "react";
 import { pinContext } from "../Context/ContextApi";
 import "../styles/Notes.css";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Notes = ({ key, id, item, handleDeleteNote }) => {
+  const [isOpen,setIsOpen] = useState(false);
+
   const { notes, setNotes } = useContext(pinContext);
   // console.log(props);
 
@@ -76,53 +79,63 @@ const Notes = ({ key, id, item, handleDeleteNote }) => {
 
   return (
     <div>
-      <div className="card" key={key}>
-        <div className="cardContent">
-          {isEditing ? (
-            <input
-              className="inputEdit"
-              type="text"
-              value={titleText}
-              placeholde="title"
-              onChange={(e) => setTitleText(e.target.value)}
-            />
-          ) : (
-            <h3>{title}</h3>
-          )}
+      <AnimatePresence>
+        <motion.div
+          initial={{ x: -1000}}
+          animate={{ x: 0}}
+          transition={{ duration: 0.7, type: "spring"}}
+          exit={{y:-1000, opacity:0}}
+          className="card"
+          key={key}
+        >
+          <div className="cardContent">
+            {isEditing ? (
+              <input
+                className="inputEdit"
+                type="text"
+                value={titleText}
+                placeholder="title"
+                onChange={(e) => setTitleText(e.target.value)}
+              />
+            ) : (
+              <h3>{title}</h3>
+            )}
 
-          <img
-            src={item.isPinned ? "/images/active-pin.svg" : "/images/pin.png"}
-            alt=""
-            className="pinIcon"
-            onClick={() => togglePinnedNote(item)}
-          />
-        </div>
-        {isEditing ? (
-          <textarea
-            type="text"
-            name="note"
-            id="note"
-            cols="30"
-            rows="10"
-            placeholder="Description"
-            value={descriptionText}
-            onChange={(e) => setDescriptionText(e.target.value)}
-          ></textarea>
-        ) : (
-          <p>{note}</p>
-        )}
-        <div className="date">{convertDate(item)}</div>
-        <div className="deleteBtn">
-          <button className="deleteButton" onClick={() => deleteNote(item)}>
-            Delete Note
-          </button>
+            <motion.img
+              whileTap={{scale:1.1}}
+              src={item.isPinned ? "/images/active-pin.svg" : "/images/pin.png"}
+              alt=""
+              className="pinIcon"
+              onClick={() => togglePinnedNote(item)}
+            />
+          </div>
           {isEditing ? (
-            <button onClick={() => handleSaveButton(item)}>Save</button>
+            <textarea
+              type="text"
+              name="note"
+              id="note"
+              cols="30"
+              rows="10"
+              placeholder="Description"
+              value={descriptionText}
+              onChange={(e) => setDescriptionText(e.target.value)}
+            ></textarea>
           ) : (
-            <button onClick={() => setIsEditing((val) => !val)}>Edit</button>
+            <p>{note}</p>
           )}
-        </div>
-      </div>
+          <div className="date">{convertDate(item)}</div>
+          <div className="deleteBtn">
+            <motion.button whileTap={{scale:0.9,x:10}} className="deleteButton" onClick={() => deleteNote(item)}>
+              Delete Note
+            </motion.button>
+            {isEditing ? (
+              <motion.button whileTap={{scale:0.9,x:10}} onClick={() => handleSaveButton(item)}>Save</motion.button>
+            ) : (
+              <motion.button whileTap={{scale:0.9,x:10}} onClick={() => setIsEditing((val) => !val)}>Edit</motion.button>
+            )}
+          </div>
+        </motion.div>
+      </AnimatePresence>
     </div>
   );
 };
